@@ -1,0 +1,10 @@
+{
+    "name": "moodle-atto_brightcove-button",
+    "builds": {
+        "moodle-atto_brightcove-button": {
+            "jsfiles": [
+                "button.js"
+            ]
+        }
+    }
+}
