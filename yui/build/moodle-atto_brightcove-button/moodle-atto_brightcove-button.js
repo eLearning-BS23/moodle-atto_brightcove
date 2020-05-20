@@ -39,16 +39,16 @@ YUI.add('moodle-atto_brightcove-button', function (Y, NAME) {
 var COMPONENTNAME = 'atto_brightcove',
     // @codingStandardsIgnoreStart
     IMAGETEMPLATE = '<div {{#brightcove_res_width}}style="max-width: {{../brightcove_res_width}}" {{/brightcove_res_width}} >' +
-        '<video-js id="my_player_{{video_id}}"' +
+        '<video id="my_player_{{video_id}}"' +
         '    data-video-id="{{video_id}}"' +
         '    data-account="{{account_id}}"' +
         '    data-player="{{player_id}}"' +
         '    data-embed="default"' +
         '    data-application-id' +
-        '    class="vjs-fluid vjs-big-play-centered"' +
+        '    class="vjs-big-play-centered"' +
         '    {{#brightcove_width}}width="{{../brightcove_width}}" {{/brightcove_width}}' +
         '    {{#brightcove_height}}height="{{../brightcove_height}}" {{/brightcove_height}}' +
-        '    controls></video-js>' +
+        '    controls></video>' +
         '</div>',
     TEMPLATES = '<form class="mform atto_form atto_brightcove" id="atto_brightcove_form">' +
         '<label for="brightcove_accountid_entry">Enter Account Id</label>' +

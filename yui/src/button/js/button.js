@@ -43,7 +43,7 @@ var COMPONENTNAME = 'atto_brightcove',
         '    data-player="{{player_id}}"' +
         '    data-embed="default"' +
         '    data-application-id' +
-        '    class="vjs-fluid vjs-big-play-centered"' +
+        '    class="vjs-big-play-centered"' +
         '    {{#brightcove_width}}width="{{../brightcove_width}}" {{/brightcove_width}}' +
         '    {{#brightcove_height}}height="{{../brightcove_height}}" {{/brightcove_height}}' +
         '    controls></video-js>' +
