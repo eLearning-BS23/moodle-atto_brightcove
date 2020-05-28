@@ -181,6 +181,8 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
             if (mediaHTML) {
                 host.setSelection(selection);
                 host.insertContentAtFocusPoint(mediaHTML);
+                var event = new Event('brightcoveinsertedtodom');
+                document.dispatchEvent(event);
                 this.markUpdated();
             }
         }, this);

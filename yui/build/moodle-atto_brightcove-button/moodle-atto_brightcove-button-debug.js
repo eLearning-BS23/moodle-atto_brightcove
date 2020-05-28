@@ -39,7 +39,7 @@ YUI.add('moodle-atto_brightcove-button', function (Y, NAME) {
 var COMPONENTNAME = 'atto_brightcove',
     // @codingStandardsIgnoreStart
     IMAGETEMPLATE = '<div {{#brightcove_res_width}}style="max-width: {{../brightcove_res_width}}" {{/brightcove_res_width}} >' +
-        '<video id="my_player_{{video_id}}"' +
+        '<video-js id="my_player_{{video_id}}"' +
         '    data-video-id="{{video_id}}"' +
         '    data-account="{{account_id}}"' +
         '    data-player="{{player_id}}"' +
@@ -48,7 +48,7 @@ var COMPONENTNAME = 'atto_brightcove',
         '    class="vjs-big-play-centered"' +
         '    {{#brightcove_width}}width="{{../brightcove_width}}" {{/brightcove_width}}' +
         '    {{#brightcove_height}}height="{{../brightcove_height}}" {{/brightcove_height}}' +
-        '    controls></video>' +
+        '    controls></video-js>' +
         '</div>',
     TEMPLATES = '<form class="mform atto_form atto_brightcove" id="atto_brightcove_form">' +
         '<label for="brightcove_accountid_entry">Enter Account Id</label>' +
@@ -183,6 +183,8 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
             if (mediaHTML) {
                 host.setSelection(selection);
                 host.insertContentAtFocusPoint(mediaHTML);
+                var event = new Event('brightcoveinsertedtodom');
+                document.dispatchEvent(event);
                 this.markUpdated();
             }
         }, this);
