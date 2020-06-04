@@ -24,10 +24,10 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-// Include lib.php.
-require_once(__DIR__ . '/lib.php');
 
-if ($hassiteconfig) {
+$ADMIN->add('editoratto', new admin_category('atto_brightcove', new lang_string('pluginname', 'atto_brightcove')));
+
+if ($ADMIN->fulltree) {
     $settings = new admin_settingpage('brightcove',get_string('pluginname','atto_brightcove'));
     $desc = get_string('brightcove_account_desc', 'atto_brightcove');
     $default = 2500000;
@@ -38,4 +38,6 @@ if ($hassiteconfig) {
     $desc_plauer = get_string('brightcove_player_desc','atto_brightcove');
     $settings->add(new admin_setting_configtext('atto_brightcove/player', get_string('brightcove_player', 'atto_brightcove'),
         $desc_plauer, null, PARAM_RAW_TRIMMED,50));
+
+
 }
