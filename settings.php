@@ -28,7 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 $ADMIN->add('editoratto', new admin_category('atto_brightcove', new lang_string('pluginname', 'atto_brightcove')));
 
 if ($ADMIN->fulltree) {
-    $settings = new admin_settingpage('brightcove',get_string('pluginname','atto_brightcove'));
+//    $settings = new admin_settingpage('brightcove',get_string('pluginname','atto_brightcove'));
     $desc = get_string('brightcove_account_desc', 'atto_brightcove');
     $default = 2500000;
 
