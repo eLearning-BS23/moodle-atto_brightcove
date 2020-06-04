@@ -37,3 +37,7 @@ $string['fileconversionfailed'] = 'File conversion failed';
 $string['settings'] = 'Brightcove video settings';
 $string['heading1stylelevel'] = 'Heading element level for Heading 1 style';
 $string['heading1stylelevel_desc'] = 'HTML heading element level to which the Word "Heading 1" style should be mapped';
+$string['brightcove_account'] = 'Brightcove account';
+$string['brightcove_account_desc'] = 'Brightcove account number';
+$string['brightcove_player'] = 'Brightcove player';
+$string['brightcove_player_desc'] = 'Brightcove player id';
