@@ -15,46 +15,31 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Atto text editor import Microsoft Word files.
+ * Atto text editor manage files plugin lib.
  *
- * @package    atto_brightcove
- * @copyright  2015 Eoin Campbell
+ * @package    atto_managefiles
+ * @copyright  2014 Frédéric Massart
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-
-
 /**
- * Initialise the strings required for js
+ * Initialise the strings required for JS.
  *
  * @return void
  */
-function atto_brightcove_strings_for_js() {
+function atto_managefiles_strings_for_js() {
     global $PAGE;
-
-    $strings = array(
-        'uploading',
-        'transformationfailed',
-        'fileuploadfailed',
-        'fileconversionfailed',
-        'pluginname'
-    );
-
-    $PAGE->requires->strings_for_js($strings, 'atto_brightcove');
+    $PAGE->requires->strings_for_js(array('managefiles'), 'atto_managefiles');
 }
-
 
 /**
  * Sends the parameters to JS module.
  *
- * @param string $elementid - unused
- * @param stdClass $options the options for the editor, including the context
- * @param stdClass $fpoptions - unused
  * @return array
  */
-function atto_brightcove_params_for_js($elementid, $options, $fpoptions) {
+function atto_managefiles_params_for_js($elementid, $options, $fpoptions) {
     global $CFG, $USER;
     require_once($CFG->dirroot . '/repository/lib.php');  // Load constants.
 
@@ -70,7 +55,8 @@ function atto_brightcove_params_for_js($elementid, $options, $fpoptions) {
 
     if (!$disabled) {
         $params['usercontext'] = context_user::instance($USER->id)->id;
-        foreach (array('itemid', 'context', 'areamaxbytes', 'maxbytes', 'subdirs', 'return_types') as $key) {
+        foreach (array('itemid', 'context', 'areamaxbytes', 'maxbytes', 'subdirs', 'return_types',
+                       'removeorphaneddrafts') as $key) {
             if (isset($options[$key])) {
                 if ($key === 'context' && is_object($options[$key])) {
                     // Just context id is enough.
@@ -84,6 +70,3 @@ function atto_brightcove_params_for_js($elementid, $options, $fpoptions) {
 
     return $params;
 }
-
-
-
