@@ -51,13 +51,13 @@ var COMPONENTNAME = 'atto_brightcove',
     TEMPLATES = '<form class="mform atto_form atto_brightcove" id="atto_brightcove_form">' +
         '<label for="brightcove_accountid_entry">Enter Account Id</label>' +
         '<input class="form-control fullwidth " type="text" id="brightcove_accountid_entry"' +
-        'size="32" required="true"/>'+
+        'size="32" required="true" value="{{brightcove_account}}"/>'+
         '<label for="brightcove_videoid_entry">Enter Video Id</label>' +
         '<input class="form-control fullwidth " type="text" id="brightcove_videoid_entry"' +
         'size="32" required="true"/>'+
         '<label for="brightcove_playerid_entry">Enter Player Id</label>' +
         '<input class="form-control fullwidth " type="text" id="brightcove_playerid_entry"' +
-        'size="32" required="true"/>'+
+        'size="32" required="true" value="{{brightcove_player}}"/>'+
         '<div class="mb-1">' +
         '<label for="brightcove_sizing" class="full-width-labels">Sizing</label><br>' +
         '<div class="form-check form-check-inline">' +
@@ -155,8 +155,12 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
      * @private
      */
     _getDialogueContent: function(selection) {
+        var context = {
+            brightcove_player: this.get('brightcove_player'),
+            brightcove_account: this.get('brightcove_account')
+        };
         var content =  Y.Node.create(
-            Y.Handlebars.compile(TEMPLATES)()
+            Y.Handlebars.compile(TEMPLATES)(context)
         );
         return this._attachEvents(content,selection);
     },
@@ -225,6 +229,12 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
         },
         area: {
             value: {}
+        },
+        brightcove_player:{
+            value: null
+        },
+        brightcove_account: {
+            value: null
         }
     }
 });
