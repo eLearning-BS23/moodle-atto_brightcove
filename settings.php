@@ -25,19 +25,19 @@
 defined('MOODLE_INTERNAL') || die();
 
 
-$ADMIN->add('editoratto', new admin_category('atto_brightcove', new lang_string('pluginname', 'atto_brightcove')));
+$ADMIN->add('editoratto', new admin_category('atto_brightcove', new lang_string('brightcove_account', 'atto_brightcove')));
 
 if ($ADMIN->fulltree) {
 //    $settings = new admin_settingpage('brightcove',get_string('pluginname','atto_brightcove'));
     $desc = get_string('brightcove_account_desc', 'atto_brightcove');
-    $default = 2500000;
+    $default = 2157889328001;
 
     $settings->add(new admin_setting_configtext('atto_brightcove/account', get_string('brightcove_account', 'atto_brightcove'),
         $desc, $default, PARAM_INT,20));
 
     $desc_plauer = get_string('brightcove_player_desc','atto_brightcove');
     $settings->add(new admin_setting_configtext('atto_brightcove/player', get_string('brightcove_player', 'atto_brightcove'),
-        $desc_plauer, null, PARAM_RAW_TRIMMED,50));
+        $desc_plauer, 'default', PARAM_RAW_TRIMMED,20));
 
 
 }
