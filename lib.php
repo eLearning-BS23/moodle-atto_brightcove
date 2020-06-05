@@ -55,6 +55,7 @@ function atto_brightcove_strings_for_js() {
  * @return array
  */
 function atto_brightcove_params_for_js($elementid, $options, $fpoptions) {
+    global $USER;
 
     $brightcove_account = get_config('atto_brightcove', 'account');
     $brightcove_player = get_config('atto_brightcove', 'player');
