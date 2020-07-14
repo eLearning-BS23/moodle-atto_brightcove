@@ -51,8 +51,8 @@ defined('MOODLE_INTERNAL') || die();
 function xmldb_atto_brightcove_install() {
     $toolbar = get_config('editor_atto', 'toolbar');
     $found = false;
+    $groups = explode("\n", $toolbar);
     if (strpos($toolbar, 'files')) {
-        $groups = explode("\n", $toolbar);
         foreach ($groups as $i => $group) {
             $parts = explode('=', $group);
             if (trim($parts[0]) == 'files') {
