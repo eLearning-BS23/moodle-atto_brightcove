@@ -15,11 +15,11 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'atto_wordimport', language 'en'.
+ * Strings for component 'atto_brightcove', language 'en'.
  *
- * @package    atto_wordimport
- * @copyright  2015 Eoin Campbell
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package     atto_brightcove
+ * @copyright   2020 Brain station 23 ltd. <https://brainstation-23.com/>
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 $string['pluginname'] = 'Brightcove video';
