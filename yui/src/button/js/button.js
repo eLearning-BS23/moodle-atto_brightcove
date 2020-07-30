@@ -14,9 +14,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /*
- * @package    atto_brightcove
- * @copyright  2015 Eoin Campbell
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package     atto_brightcove
+ * @copyright   2020 Brain station 23 ltd. <https://brainstation-23.com/>
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 /**
@@ -24,11 +24,6 @@
  */
 
 /**
- * Atto text editor import Microsoft Word file plugin.
- *
- * This plugin adds the ability to drop a Word file in and have it automatically
- * convert the contents into XHTML and into the text box.
- *
  * @namespace M.atto_brightcove
  * @class Button
  * @extends M.editor_atto.EditorPlugin
@@ -126,7 +121,7 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
     },
 
     /**
-     * Handle a Word file upload via the filepicker
+     * Handle brightcove video contetn import to text area
      *
      * @method _handleWordFileUpload
      * @param {object} params The parameters provided by the filepicker.
