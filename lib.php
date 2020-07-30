@@ -15,11 +15,9 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Atto text editor import Microsoft Word files.
- *
- * @package    atto_brightcove
- * @copyright  2015 Eoin Campbell
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ *@package     atto_brightcove
+ * @copyright   2020 Brain station 23 ltd. <https://brainstation-23.com/>
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
