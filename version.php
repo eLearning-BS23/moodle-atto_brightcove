@@ -26,3 +26,7 @@ $plugin->requires  = 2014051200;        // Requires Moodle 2.7 or higher, when A
 $plugin->component = 'atto_brightcove';  // Full name of the plugin (used for diagnostics).
 $plugin->maturity  = MATURITY_STABLE;
 $plugin->release   = '1.3.7 (Build 2018060401)'; // Human readable version information.
+
+$plugin->dependencies = [
+    'media_bcplayer' => '2019112200'
+];
