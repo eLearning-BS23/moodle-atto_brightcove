@@ -1,6 +1,9 @@
 # moodle-atto-brightcove
 You can add brightcove video from this plugin through moodle atto editor.
 
+# Dependency 
+ - Moodle-brightcove-loader (2019112200)
+
 # instalation 
 - check how to install moodle plugins (https://docs.moodle.org/39/en/Installing_plugins)
 - Or download and unzip the code
@@ -15,4 +18,6 @@ You can add brightcove video from this plugin through moodle atto editor.
 - Pop-up will show.
 - fill up the required information
 - done! 
+
+
 
