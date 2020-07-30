@@ -21,11 +21,11 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2018060401;        // The current plugin version (Date: YYYYMMDDXX).
-$plugin->requires  = 2014051200;        // Requires Moodle 2.7 or higher, when Atto was added to core.
+$plugin->version   = 2019112200;      
+$plugin->requires  = 2019112200;        
 $plugin->component = 'atto_brightcove';  // Full name of the plugin (used for diagnostics).
 $plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = '1.3.7 (Build 2018060401)'; // Human readable version information.
+$plugin->release   = '1.0.1 (Build 2019112200)'; // Human readable version information.
 
 $plugin->dependencies = [
     'media_bcplayer' => '2019112200'
