@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Privacy information for administration tool upload enrolment methods- no user data stored.
+ * Privacy information for atto brightcove extention- no user data stored.
  *
- * @package     atto_wordimport
- * @copyright   2018 Eoin Campbell
+ * @package     atto_brightcove
+ * @copyright   2020 Brain station 23 ltd. <https://brainstation-23.com/>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -27,9 +27,9 @@ namespace atto_brightcove\privacy;
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Privacy Subsystem for atto_wordimport implementing null_provider.
+ * Privacy Subsystem for atto_brightcove implementing null_provider.
  *
- * @copyright   2018 Eoin Campbell
+ * @copyright   2020 Brain station 23 ltd.
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class provider implements \core_privacy\local\metadata\null_provider {
