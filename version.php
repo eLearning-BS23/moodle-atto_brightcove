@@ -15,6 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Atto brightcove plugin information
  * @package     atto_brightcove
  * @copyright   2020 Brain station 23 ltd. <https://brainstation-23.com/>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -22,8 +23,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2020052000;      
-$plugin->requires  = 2019112200;        
+$plugin->version   = 2020052000;
+$plugin->requires  = 2019112200;
 $plugin->component = 'atto_brightcove';  // Full name of the plugin (used for diagnostics).
 $plugin->release   = '1.0.1 (Build 2019112200)'; // Human readable version information.
 $plugin->maturity = MATURITY_STABLE; // This is considered as ready for production sites.

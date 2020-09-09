@@ -15,6 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Library functions for Atto brightcove plugin
  * @package     atto_brightcove
  * @copyright   2020 Brain station 23 ltd. <https://brainstation-23.com/>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -51,12 +52,14 @@ function atto_brightcove_strings_for_js() {
  * @param stdClass $options the options for the editor, including the context
  * @param stdClass $fpoptions - unused
  * @return array
+ * @throws coding_exception
+ * @throws dml_exception
  */
 function atto_brightcove_params_for_js($elementid, $options, $fpoptions) {
     global $USER;
 
-    $brightcove_account = get_config('atto_brightcove', 'account');
-    $brightcove_player = get_config('atto_brightcove', 'player');
+    $brightcoveaccount = get_config('atto_brightcove', 'account');
+    $brightcoveplayer = get_config('atto_brightcove', 'player');
 
     // Disabled if:
     // - Not logged in or guest.
@@ -67,7 +70,7 @@ function atto_brightcove_params_for_js($elementid, $options, $fpoptions) {
             (isset($options['return_types']) && !($options['return_types'] & ~FILE_EXTERNAL));
 
     $params = array('disabled' => $disabled, 'area' => array(), 'usercontext' => null,
-        'brightcove_account' => $brightcove_account, 'brightcove_player' =>$brightcove_player);
+        'brightcove_account' => $brightcoveaccount, 'brightcove_player' => $brightcoveplayer);
 
     if (!$disabled) {
         $params['usercontext'] = context_user::instance($USER->id)->id;
