@@ -23,10 +23,10 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2020052001;
+$plugin->version   = 2020052002;
 $plugin->requires  = 2019111803; // Requires Moodle 3.8.3
 $plugin->component = 'atto_brightcove';  // Full name of the plugin (used for diagnostics).
-$plugin->release   = '1.0.1 (Build 2019112200)'; // Human readable version information.
+$plugin->release   = '1.0.2'; // Human readable version information.
 $plugin->maturity = MATURITY_STABLE; // This is considered as ready for production sites.
 
 $plugin->dependencies = [
