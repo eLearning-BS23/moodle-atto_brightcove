@@ -58,8 +58,8 @@ function atto_brightcove_strings_for_js() {
 function atto_brightcove_params_for_js($elementid, $options, $fpoptions) {
     global $USER;
 
-    $brightcoveAccount = get_config('atto_brightcove', 'account');
-    $brightcovePlayer = get_config('atto_brightcove', 'player');
+    $brightcoveaccount = get_config('atto_brightcove', 'account');
+    $brightcoveplayer = get_config('atto_brightcove', 'player');
 
     // Disabled if:
     // - Not logged in or guest.
@@ -70,7 +70,7 @@ function atto_brightcove_params_for_js($elementid, $options, $fpoptions) {
             (isset($options['return_types']) && !($options['return_types'] & ~FILE_EXTERNAL));
 
     $params = array('disabled' => $disabled, 'area' => array(), 'usercontext' => null,
-        'brightcoveAccount' => $brightcoveAccount, 'brightcovePlayer' => $brightcovePlayer);
+        'brightcoveAccount' => $brightcoveaccount, 'brightcovePlayer' => $brightcoveplayer);
 
     if (!$disabled) {
         $params['usercontext'] = context_user::instance($USER->id)->id;
