@@ -104,7 +104,7 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
      * @method initializer
      */
 
-    initializer: function () {
+    initializer: function() {
         // If we don't have the capability to view then give up.
         if (this.get('disabled')) {
             return;
@@ -120,13 +120,10 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
 
     /**
      * Handle brightcove video contetn import to text area
-     *
      * @method _handleBrightCoveUpload
-     * containing information about the file.
      * @private
-     * @return {boolean} whether the uploaded file is .docx
      */
-    _handleBrightCoveUpload: function () {
+    _handleBrightCoveUpload: function() {
         var dialogue = this.getDialogue({
             headerContent: M.util.get_string('pluginname', COMPONENTNAME),
             focusAfterHide: true,
@@ -145,10 +142,10 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
      * @return {Y.Node}
      * @private
      */
-    _getDialogueContent: function (selection) {
+    _getDialogueContent: function(selection) {
         var context = {
-            brightcovePlayer: this.get('brightcove_player'),
-            brightcoveAccount: this.get('brightcove_account')
+            brightcovePlayer: this.get('brightcovePlayer'),
+            brightcoveAccount: this.get('brightcoveAccount')
         };
         var content = Y.Node.create(
             Y.Handlebars.compile(TEMPLATES)(context)
@@ -164,7 +161,7 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
      * @return {Y.Node}
      * @private
      */
-    _attachEvents: function (content, selection) {
+    _attachEvents: function(content, selection) {
         content.one('.submit').on('click', function (e) {
             e.preventDefault();
             var mediaHTML = this._getMediaHTMLBrightcove(e.currentTarget.ancestor('.atto_form')),
@@ -176,7 +173,7 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
             if (mediaHTML) {
                 host.setSelection(selection);
                 host.insertContentAtFocusPoint(mediaHTML);
-                var event = new Event('brightcoveinsertedtodom');
+                var event = new window.Event('brightcoveinsertedtodom');
                 document.dispatchEvent(event);
                 this.markUpdated();
             }
@@ -192,7 +189,7 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
      * @return {String} The compiled markup
      * @private
      */
-    _getMediaHTMLBrightcove: function (tab) {
+    _getMediaHTMLBrightcove: function(tab) {
         var brightcoveWidthUnit = tab.one("#brightcove_width_unit").get('value') || 'px';
         var brightcoveWidth = tab.one("#brightcove_width").get('value') + brightcoveWidthUnit;
         var brightcoveHeight = tab.one("#brightcove_height").get('value') + brightcoveWidthUnit;
@@ -221,10 +218,10 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
         area: {
             value: {}
         },
-        brightcove_player: {
+        brightcovePlayer: {
             value: null
         },
-        brightcove_account: {
+        brightcoveAccount: {
             value: null
         }
     }
