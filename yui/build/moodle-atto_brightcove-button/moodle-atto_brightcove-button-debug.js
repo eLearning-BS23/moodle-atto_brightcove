@@ -30,28 +30,28 @@ YUI.add('moodle-atto_brightcove-button', function (Y, NAME) {
 
 var COMPONENTNAME = 'atto_brightcove',
     // @codingStandardsIgnoreStart
-    IMAGETEMPLATE = '<div {{#brightcove_res_width}}style="max-width: {{../brightcove_res_width}}" {{/brightcove_res_width}} >' +
-        '<video-js id="my_player_{{video_id}}"' +
-        '    data-video-id="{{video_id}}"' +
-        '    data-account="{{account_id}}"' +
-        '    data-player="{{player_id}}"' +
+    IMAGETEMPLATE = '<div {{#brightcoveResWidth}}style="max-width: {{../brightcoveResWidth}}" {{/brightcoveResWidth}} >' +
+        '<video-js id="my_player_{{videoId}}"' +
+        '    data-video-id="{{videoId}}"' +
+        '    data-account="{{accountId}}"' +
+        '    data-player="{{playerId}}"' +
         '    data-embed="default"' +
         '    data-application-id' +
         '    class="vjs-big-play-centered"' +
-        '    {{#brightcove_width}}width="{{../brightcove_width}}" {{/brightcove_width}}' +
-        '    {{#brightcove_height}}height="{{../brightcove_height}}" {{/brightcove_height}}' +
+        '    {{#brightcoveWidth}}width="{{../brightcoveWidth}}" {{/brightcoveWidth}}' +
+        '    {{#brightcoveHeight}}height="{{../brightcoveHeight}}" {{/brightcoveHeight}}' +
         '    controls></video-js>' +
         '</div>',
     TEMPLATES = '<form class="mform atto_form atto_brightcove" id="atto_brightcove_form">' +
         '<label for="brightcove_accountid_entry">Enter Account Id</label>' +
         '<input class="form-control fullwidth " type="text" id="brightcove_accountid_entry"' +
-        'size="32" required="true" value="{{brightcove_account}}"/>' +
+        'size="32" required="true" value="{{brightcoveAccount}}"/>' +
         '<label for="brightcove_videoid_entry">Enter Video Id</label>' +
         '<input class="form-control fullwidth " type="text" id="brightcove_videoid_entry"' +
         'size="32" required="true"/>' +
         '<label for="brightcove_playerid_entry">Enter Player Id</label>' +
         '<input class="form-control fullwidth " type="text" id="brightcove_playerid_entry"' +
-        'size="32" required="true" value="{{brightcove_player}}"/>' +
+        'size="32" required="true" value="{{brightcovePlayer}}"/>' +
         '<div class="mb-1">' +
         '<label for="brightcove_sizing" class="full-width-labels">Sizing</label><br>' +
         '<div class="form-check form-check-inline">' +
@@ -104,7 +104,7 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
      * @method initializer
      */
 
-    initializer: function () {
+    initializer: function() {
         // If we don't have the capability to view then give up.
         if (this.get('disabled')) {
             return;
@@ -120,13 +120,10 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
 
     /**
      * Handle brightcove video contetn import to text area
-     *
      * @method _handleBrightCoveUpload
-     * containing information about the file.
      * @private
-     * @return {boolean} whether the uploaded file is .docx
      */
-    _handleBrightCoveUpload: function () {
+    _handleBrightCoveUpload: function() {
         var dialogue = this.getDialogue({
             headerContent: M.util.get_string('pluginname', COMPONENTNAME),
             focusAfterHide: true,
@@ -145,10 +142,10 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
      * @return {Y.Node}
      * @private
      */
-    _getDialogueContent: function (selection) {
+    _getDialogueContent: function(selection) {
         var context = {
-            brightcove_player: this.get('brightcove_player'),
-            brightcove_account: this.get('brightcove_account')
+            brightcovePlayer: this.get('brightcovePlayer'),
+            brightcoveAccount: this.get('brightcoveAccount')
         };
         var content = Y.Node.create(
             Y.Handlebars.compile(TEMPLATES)(context)
@@ -164,7 +161,7 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
      * @return {Y.Node}
      * @private
      */
-    _attachEvents: function (content, selection) {
+    _attachEvents: function(content, selection) {
         content.one('.submit').on('click', function (e) {
             e.preventDefault();
             var mediaHTML = this._getMediaHTMLBrightcove(e.currentTarget.ancestor('.atto_form')),
@@ -176,7 +173,7 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
             if (mediaHTML) {
                 host.setSelection(selection);
                 host.insertContentAtFocusPoint(mediaHTML);
-                var event = new Event('brightcoveinsertedtodom');
+                var event = new window.Event('brightcoveinsertedtodom');
                 document.dispatchEvent(event);
                 this.markUpdated();
             }
@@ -192,24 +189,24 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
      * @return {String} The compiled markup
      * @private
      */
-    _getMediaHTMLBrightcove: function (tab) {
+    _getMediaHTMLBrightcove: function(tab) {
         var brightcoveWidthUnit = tab.one("#brightcove_width_unit").get('value') || 'px';
         var brightcoveWidth = tab.one("#brightcove_width").get('value') + brightcoveWidthUnit;
         var brightcoveHeight = tab.one("#brightcove_height").get('value') + brightcoveWidthUnit;
         var brightcoveSizing = document.querySelector('input[name="brightcove_sizing"]:checked').value;
 
         var context = {
-            account_id: tab.one("#brightcove_accountid_entry").get('value'),
-            video_id: tab.one("#brightcove_videoid_entry").get('value'),
-            player_id: tab.one("#brightcove_playerid_entry").get('value')
+            accountId: tab.one("#brightcove_accountid_entry").get('value'),
+            videoId: tab.one("#brightcove_videoid_entry").get('value'),
+            playerId: tab.one("#brightcove_playerid_entry").get('value')
         };
         if (brightcoveSizing === 'res') {
-            context.brightcove_res_width = brightcoveWidth;
+            context.brightcoveResWidth = brightcoveWidth;
         } else {
-            context.brightcove_width = brightcoveWidth;
-            context.brightcove_height = brightcoveHeight;
+            context.brightcoveWidth = brightcoveWidth;
+            context.brightcoveHeight = brightcoveHeight;
         }
-        return context.video_id ? Y.Handlebars.compile(IMAGETEMPLATE)(context) : '';
+        return context.videoId ? Y.Handlebars.compile(IMAGETEMPLATE)(context) : '';
     }
 
 
@@ -221,10 +218,10 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
         area: {
             value: {}
         },
-        brightcove_player: {
+        brightcovePlayer: {
             value: null
         },
-        brightcove_account: {
+        brightcoveAccount: {
             value: null
         }
     }
