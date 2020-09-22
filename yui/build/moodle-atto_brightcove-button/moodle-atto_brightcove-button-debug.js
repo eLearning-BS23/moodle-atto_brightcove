@@ -162,7 +162,7 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
      * @private
      */
     _attachEvents: function(content, selection) {
-        content.one('.submit').on('click', function (e) {
+        content.one('.submit').on('click', function(e) {
             e.preventDefault();
             var mediaHTML = this._getMediaHTMLBrightcove(e.currentTarget.ancestor('.atto_form')),
                 host = this.get('host');
