@@ -28,7 +28,7 @@ $ADMIN->add('editoratto', new admin_category('atto_brightcove', new lang_string(
 
 if ($ADMIN->fulltree) {
     $desc = get_string('brightcove_account_desc', 'atto_brightcove');
-    $default = 2157899998001;
+    $default = 0;
 
     $settings->add(new admin_setting_configtext('atto_brightcove/account', get_string('brightcove_account', 'atto_brightcove'),
         $desc, $default, PARAM_INT, 20));

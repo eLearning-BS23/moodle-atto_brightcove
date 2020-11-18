@@ -163,6 +163,14 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
      */
     _attachEvents: function(content, selection) {
         content.one('.submit').on('click', function(e) {
+            var atto_form_content = e.currentTarget.ancestor('.atto_form');
+            var account_id = atto_form_content.one("#brightcove_accountid_entry").get('value');
+            var video_id = atto_form_content.one("#brightcove_videoid_entry").get('value');
+            var player_id = atto_form_content.one("#brightcove_playerid_entry").get('value');
+
+            if (!account_id || !video_id || !player_id) {
+                return;
+            }
             e.preventDefault();
             var mediaHTML = this._getMediaHTMLBrightcove(e.currentTarget.ancestor('.atto_form')),
                 host = this.get('host');
