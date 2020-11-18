@@ -40,6 +40,23 @@ function atto_brightcove_strings_for_js() {
         'fileconversionfailed',
         'pluginname'
     );
+    $strings = array(
+        'uploading',
+        'transformationfailed',
+        'fileuploadfailed',
+        'fileconversionfailed',
+        'pluginname',
+        'enter_account_id',
+        'enter_video_id',
+        'enter_player_id',
+        'video_sizing',
+        'video_size',
+        'video_responsive',
+        'video_fixed',
+        'video_width',
+        'video_height',
+        'insert_brightcove_video',
+    );
 
     $PAGE->requires->strings_for_js($strings, 'atto_brightcove');
 }

@@ -41,32 +41,32 @@ var COMPONENTNAME = 'atto_brightcove',
         '    controls></video-js>' +
         '</div>',
     TEMPLATES = '<form class="mform atto_form atto_brightcove" id="atto_brightcove_form">' +
-        '<label for="brightcove_accountid_entry">Enter Account Id</label>' +
+        '<label for="brightcove_accountid_entry">'+M.str.atto_brightcove.enter_account_id+'</label>' +
         '<input class="form-control fullwidth " type="text" id="brightcove_accountid_entry"' +
         'size="32" required="true" value="{{brightcoveAccount}}"/>' +
-        '<label for="brightcove_videoid_entry">Enter Video Id</label>' +
+        '<label for="brightcove_videoid_entry">'+M.str.atto_brightcove.enter_video_id+'</label>' +
         '<input class="form-control fullwidth " type="text" id="brightcove_videoid_entry"' +
         'size="32" required="true"/>' +
-        '<label for="brightcove_playerid_entry">Enter Player Id</label>' +
+        '<label for="brightcove_playerid_entry">'+M.str.atto_brightcove.enter_player_id+'</label>' +
         '<input class="form-control fullwidth " type="text" id="brightcove_playerid_entry"' +
         'size="32" required="true" value="{{brightcovePlayer}}"/>' +
         '<div class="mb-1">' +
-        '<label for="brightcove_sizing" class="full-width-labels">Sizing</label><br>' +
+        '<label for="brightcove_sizing" class="full-width-labels">'+M.str.atto_brightcove.video_sizing+'</label><br>' +
         '<div class="form-check form-check-inline">' +
         '  <input class="form-check-input" type="radio" name="brightcove_sizing" id="inlineRadio1" value="res" checked>' +
-        '  <label class="form-check-label" for="inlineRadio1">Responsive</label>' +
+        '  <label class="form-check-label" for="inlineRadio1">'+M.str.atto_brightcove.video_responsive+'</label>' +
         '</div>' +
         '<div class="form-check form-check-inline">' +
         '  <input class="form-check-input" type="radio" name="brightcove_sizing" id="inlineRadio2" value="fix">' +
-        '  <label class="form-check-label" for="inlineRadio2">Fixed</label>' +
+        '  <label class="form-check-label" for="inlineRadio2">'+M.str.atto_brightcove.video_fixed+'</label>' +
         '</div>' +
         '</div>' +
         '<div class="mb-1" >' +
-        '    <label>Size</label>' +
+        '    <label>'+M.str.atto_brightcove.video_size+'</label>' +
         '    <div class="form-inline " >' +
-        '        <label class="accesshide">Video width</label>' +
+        '        <label class="accesshide">'+M.str.atto_brightcove.video_width+'</label>' +
         '        <input type="text" class="form-control mr-1  input-mini" size="4" id="brightcove_width" value="960"> x' +
-        '        <label class="accesshide">Video height</label>' +
+        '        <label class="accesshide">'+M.str.atto_brightcove.video_height+'</label>' +
         '        <input type="text" class="form-control ml-1 input-mini" size="4" id="brightcove_height" value="540">' +
         '        <label class="accesshide">Unit</label>' +
         '        <select class="form-control ml-1 input-mini"  id="brightcove_width_unit">' +
@@ -79,7 +79,7 @@ var COMPONENTNAME = 'atto_brightcove',
         '<div class="clearfix"></div>' +
         '<div class="mdl-align">' +
         '<br>' +
-        '<button class="btn btn-secondary submit" type="submit">Insert Brightcove Video</button>' +
+        '<button class="btn btn-secondary submit" type="submit">'+M.str.atto_brightcove.insert_brightcove_video+'</button>' +
         '</div>' +
         '</form>';
 // @codingStandardsIgnoreEnd
@@ -123,7 +123,7 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
      */
     _handleBrightCoveUpload: function() {
         var dialogue = this.getDialogue({
-            headerContent: M.util.get_string('pluginname', COMPONENTNAME),
+            headerContent: M.str.atto_brightcove.pluginname,
             focusAfterHide: true,
             width: 660
         });
