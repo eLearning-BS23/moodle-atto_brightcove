@@ -28,7 +28,7 @@
 
 var COMPONENTNAME = 'atto_brightcove',
     // @codingStandardsIgnoreStart
-    IMAGETEMPLATE = '<div {{#brightcoveResWidth}}style="max-width: {{../brightcoveResWidth}}" {{/brightcoveResWidth}} >' +
+    IMAGETEMPLATE = '<div class="brightcove-video-js-container" {{#brightcoveResWidth}}style="max-width: {{../brightcoveResWidth}}" {{/brightcoveResWidth}} >' +
         '<video-js id="my_player_{{videoId}}"' +
         '    data-video-id="{{videoId}}"' +
         '    data-account="{{accountId}}"' +
@@ -38,7 +38,13 @@ var COMPONENTNAME = 'atto_brightcove',
         '    class="vjs-big-play-centered"' +
         '    {{#brightcoveWidth}}width="{{../brightcoveWidth}}" {{/brightcoveWidth}}' +
         '    {{#brightcoveHeight}}height="{{../brightcoveHeight}}" {{/brightcoveHeight}}' +
-        '    controls></video-js>' +
+        '    controls>' +
+        '    <img src="'+M.util.image_url('brightcoveposter','atto_brightcove')+'"' +
+        '    {{#brightcoveHeight}}height="{{../brightcoveHeight}}" {{/brightcoveHeight}} ' +
+        '    {{#brightcoveWidth}}width="{{../brightcoveWidth}}" {{/brightcoveWidth}}' +
+        '    {{#brightcoveResWidth}}height="150" width="300" {{/brightcoveResWidth}}' +
+        '>' +
+        '</video-js>' +
         '</div>',
     TEMPLATES = '<form class="mform atto_form atto_brightcove" id="atto_brightcove_form">' +
         '<label for="brightcove_accountid_entry">'+M.str.atto_brightcove.enter_account_id+'</label>' +
@@ -179,17 +185,6 @@ Y.use('core/event').namespace('M.atto_brightcove').Button = Y.Base.create('butto
             if (mediaHTML) {
                 host.setSelection(selection);
                 host.insertContentAtFocusPoint(mediaHTML);
-                var nodes = $(mediaHTML);
-                Y.use('event', 'moodle-core-event', function(Y) {
-                    // Trigger it the JQuery way.
-                    $(document).trigger(M.core.event.FILTER_CONTENT_UPDATED, [nodes]);
-
-                    // Create a YUI NodeList from our JQuery Object.
-                    var yuiNodes = new Y.NodeList(nodes.get());
-
-                    // And again for YUI.
-                    Y.fire(M.core.event.FILTER_CONTENT_UPDATED, {nodes: yuiNodes});
-                });
                 this.markUpdated();
             }
         }, this);

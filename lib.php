@@ -77,6 +77,7 @@ function atto_brightcove_params_for_js($elementid, $options, $fpoptions) {
 
     $brightcoveaccount = get_config('atto_brightcove', 'account');
     $brightcoveplayer = get_config('atto_brightcove', 'player');
+    $brightcoveplayer = get_config('atto_brightcove', 'player');
 
     // Disabled if:
     // - Not logged in or guest.
