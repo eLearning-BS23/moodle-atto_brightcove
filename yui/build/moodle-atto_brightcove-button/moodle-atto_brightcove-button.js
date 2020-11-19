@@ -86,7 +86,7 @@ var COMPONENTNAME = 'atto_brightcove',
         '</form>';
 // @codingStandardsIgnoreEnd
 
-Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_atto.EditorPlugin, [], {
+Y.use('core/event').namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_atto.EditorPlugin, [], {
 
     /**
      * A reference to the current selection at the time that the dialogue
@@ -181,8 +181,17 @@ Y.namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_att
             if (mediaHTML) {
                 host.setSelection(selection);
                 host.insertContentAtFocusPoint(mediaHTML);
-                var event = new window.Event('brightcoveinsertedtodom');
-                document.dispatchEvent(event);
+                var nodes = $(mediaHTML);
+                Y.use('event', 'moodle-core-event', function(Y) {
+                    // Trigger it the JQuery way.
+                    $(document).trigger(M.core.event.FILTER_CONTENT_UPDATED, [nodes]);
+
+                    // Create a YUI NodeList from our JQuery Object.
+                    var yuiNodes = new Y.NodeList(nodes.get());
+
+                    // And again for YUI.
+                    Y.fire(M.core.event.FILTER_CONTENT_UPDATED, {nodes: yuiNodes});
+                });
                 this.markUpdated();
             }
         }, this);
