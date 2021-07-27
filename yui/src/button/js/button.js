@@ -28,14 +28,14 @@
 
 var COMPONENTNAME = 'atto_brightcove',
     // @codingStandardsIgnoreStart
-    IMAGETEMPLATE = '<div class="brightcove-video-js-container" {{#brightcoveResWidth}}style="max-width: {{../brightcoveResWidth}}" {{/brightcoveResWidth}} >' +
-        '<video-js id="my_player_{{videoId}}"' +
+    IMAGETEMPLATE = '<section class="brightcove-video-js-container" {{#brightcoveResWidth}}style="max-width: {{../brightcoveResWidth}}" {{/brightcoveResWidth}} >' +
+        '<video-js style="display:{{display_video}}" id="my_player_{{videoId}}"' +
         '    data-video-id="{{videoId}}"' +
         '    data-account="{{accountId}}"' +
         '    data-player="{{playerId}}"' +
         '    data-embed="default"' +
         '    data-application-id' +
-        '    class="vjs-big-play-centered"' +
+        '    class="vjs-big-play-centered video-player"' +
         '    {{#brightcoveWidth}}width="{{../brightcoveWidth}}" {{/brightcoveWidth}}' +
         '    {{#brightcoveHeight}}height="{{../brightcoveHeight}}" {{/brightcoveHeight}}' +
         '    controls>' +
@@ -45,7 +45,12 @@ var COMPONENTNAME = 'atto_brightcove',
         '    {{#brightcoveResWidth}}height="150" width="300" {{/brightcoveResWidth}}' +
         '>' +
         '</video-js>' +
-        '</div>',
+        '    <img class="video_thumb" style="display:{{display_thumb}}" src="'+M.util.image_url('brightcoveposter','atto_brightcove')+'"' +
+        '    {{#brightcoveHeight}}height="{{../brightcoveHeight}}" {{/brightcoveHeight}} ' +
+        '    {{#brightcoveWidth}}width="{{../brightcoveWidth}}" {{/brightcoveWidth}}' +
+        '    {{#brightcoveResWidth}}height="150" width="300" {{/brightcoveResWidth}}' +
+        '>' +
+        '</section>',
     TEMPLATES = '<form class="mform atto_form atto_brightcove" id="atto_brightcove_form">' +
         '<label for="brightcove_accountid_entry">'+M.str.atto_brightcove.enter_account_id+'</label>' +
         '<input class="form-control fullwidth " type="text" id="brightcove_accountid_entry"' +
@@ -87,7 +92,30 @@ var COMPONENTNAME = 'atto_brightcove',
         '<br>' +
         '<button class="btn btn-secondary submit" type="submit">'+M.str.atto_brightcove.insert_brightcove_video+'</button>' +
         '</div>' +
-        '</form>';
+        '</form>',
+        THUMBIMAGE = '<section class="brightcove-video-js-container" {{#brightcoveResWidth}}style="max-width: {{../brightcoveResWidth}}" {{/brightcoveResWidth}} >' +
+        '<video-js class="video-player" id="my_player_{{videoId}}"' +
+        '    data-video-id="{{videoId}}"' +
+        '    data-account="{{accountId}}"' +
+        '    data-player="{{playerId}}"' +
+        '    data-embed="default"' +
+        '    data-application-id' +
+        '    class="vjs-big-play-centered"' +
+        '    {{#brightcoveWidth}}width="{{../brightcoveWidth}}" {{/brightcoveWidth}}' +
+        '    {{#brightcoveHeight}}height="{{../brightcoveHeight}}" {{/brightcoveHeight}}' +
+        '    controls>' +
+        '    <img src="'+M.util.image_url('brightcoveposter','atto_brightcove')+'"' +
+        '    {{#brightcoveHeight}}height="{{../brightcoveHeight}}" {{/brightcoveHeight}} ' +
+        '    {{#brightcoveWidth}}width="{{../brightcoveWidth}}" {{/brightcoveWidth}}' +
+        '    {{#brightcoveResWidth}}height="150" width="300" {{/brightcoveResWidth}}' +
+        '>' +
+        '</video-js>' +
+        '    <img style="display:{{display}}" src="'+M.util.image_url('brightcoveposter','atto_brightcove')+'"' +
+        '    {{#brightcoveHeight}}height="{{../brightcoveHeight}}" {{/brightcoveHeight}} ' +
+        '    {{#brightcoveWidth}}width="{{../brightcoveWidth}}" {{/brightcoveWidth}}' +
+        '    {{#brightcoveResWidth}}height="150" width="300" {{/brightcoveResWidth}}' +
+        '>' +
+        '</section>';
 // @codingStandardsIgnoreEnd
 
 Y.use('core/event').namespace('M.atto_brightcove').Button = Y.Base.create('button', Y.M.editor_atto.EditorPlugin, [], {
@@ -179,6 +207,7 @@ Y.use('core/event').namespace('M.atto_brightcove').Button = Y.Base.create('butto
             var mediaHTML = this._getMediaHTMLBrightcove(e.currentTarget.ancestor('.atto_form')),
                 host = this.get('host');
 
+
             this.getDialogue({
                 focusAfterHide: null
             }).hide();
@@ -208,6 +237,29 @@ Y.use('core/event').namespace('M.atto_brightcove').Button = Y.Base.create('butto
         var context = {
             accountId: tab.one("#brightcove_accountid_entry").get('value'),
             videoId: tab.one("#brightcove_videoid_entry").get('value'),
+            playerId: tab.one("#brightcove_playerid_entry").get('value'),
+            display_video  : 'block',
+            display_thumb  : 'none'
+        };
+        if (brightcoveSizing === 'res') {
+            context.brightcoveResWidth = brightcoveWidth;
+        } else {
+            context.brightcoveWidth = brightcoveWidth;
+            context.brightcoveHeight = brightcoveHeight;
+        }
+        
+        return context.videoId ? Y.Handlebars.compile(IMAGETEMPLATE)(context) : '';
+    },
+
+    _getMediaThumbBrightcove: function(tab) {
+        var brightcoveWidthUnit = tab.one("#brightcove_width_unit").get('value') || 'px';
+        var brightcoveWidth = tab.one("#brightcove_width").get('value') + brightcoveWidthUnit;
+        var brightcoveHeight = tab.one("#brightcove_height").get('value') + brightcoveWidthUnit;
+        var brightcoveSizing = document.querySelector('input[name="brightcove_sizing"]:checked').value;
+
+        var context = {
+            accountId: tab.one("#brightcove_accountid_entry").get('value'),
+            videoId: tab.one("#brightcove_videoid_entry").get('value'),
             playerId: tab.one("#brightcove_playerid_entry").get('value')
         };
         if (brightcoveSizing === 'res') {
@@ -216,7 +268,8 @@ Y.use('core/event').namespace('M.atto_brightcove').Button = Y.Base.create('butto
             context.brightcoveWidth = brightcoveWidth;
             context.brightcoveHeight = brightcoveHeight;
         }
-        return context.videoId ? Y.Handlebars.compile(IMAGETEMPLATE)(context) : '';
+        
+        return context.videoId ? Y.Handlebars.compile(THUMBIMAGE)(context) : '';
     }
 
 
@@ -235,4 +288,8 @@ Y.use('core/event').namespace('M.atto_brightcove').Button = Y.Base.create('butto
             value: null
         }
     }
+});
+$(window).on("load", function (e) {
+    $('.video-js').css('display', 'none');
+    $('.video-thumb').css('display', 'block');
 });
